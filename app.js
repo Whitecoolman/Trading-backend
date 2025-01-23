@@ -6,8 +6,9 @@ const TelegramBot = require("node-telegram-bot-api");
 const app = express();
 app.use(bodyParser.json());
 
-const TELEGRAM_TOKEN = "token";
-const CHAT_ID = "chatID";
+const TELEGRAM_TOKEN = process.env.token;
+;
+const CHAT_ID = process.env.chatID;
 const bot = new TelegramBot(TELEGRAM_TOKEN, {polling: false});
 
 app.post('/webhook', async(req,res) =>{
