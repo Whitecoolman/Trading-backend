@@ -10,3 +10,6 @@ app.use(bodyParser.json());
 const TELEGRAM_TOKEN = 'YOUR_TELEGRAM_BOT_TOKEN';
 const CHAT_ID = 'YOUR_TELEGRAM_CHAT_ID';
 const bot = new TelegramBot(TELEGRAM_TOKEN, { polling: false });
+
+app.post('/webhook', async (req, res) => {
+    const { symbol, volume, avg_volume_15, avg_volume_1h } = req.body;
