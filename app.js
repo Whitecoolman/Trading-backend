@@ -41,3 +41,14 @@ async function captureTradingViewChart(symbol){
 
   return screenshotPath;
 }
+
+async function sendTelegramAlert(symbol, volume, screenshotPath){
+  const message = `🚨 ${symbol} Alert!\nVolume: ${volume} exceeds 50% average.`;
+  await bot.sendMessage(CHAT_ID, message);
+  await bot.sendPhoto(CHAT_ID, screenshotPath);
+}
+
+const PORT = 5000;
+app.listen(PORT, ()=>{
+  console.log( `Server is running on port ${PORT}`);
+});
