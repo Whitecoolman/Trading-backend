@@ -28,3 +28,16 @@ app.post('/webhook', async(req,res) =>{
     res.status(200).send({status: "volume threshold not met"});
   }
 });
+
+async function captureTradingViewChart(symbol){
+  const browser = await puppeteer.launch({headless: true});
+  const page = await browser.newPage();
+  const url = `https://www.tradingview.com/chart/?symbol=${symbol}`;
+  await page.goto(url, {waitUntil: "networkidle2"});
+  
+  const screenshotPath = `${symbol}_chart.png`;
+  await page.screenshot({path:screenshotPath});
+  await browser.close();
+
+  return screenshotPath;
+}
