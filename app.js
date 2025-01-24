@@ -45,8 +45,6 @@ async function captureTradingViewChart(symbol){
 }
 
 async function sendTelegramAlert(symbol, volume, screenshotPath){
-  let symbol = "btc";
-  let volume = 3000;
   const message = `🚨 ${symbol} Alert!\nVolume: ${volume} exceeds 50% average.`;
   bot.sendMessage(CHAT_ID, message);
   await bot.sendPhoto(CHAT_ID, screenshotPath);
